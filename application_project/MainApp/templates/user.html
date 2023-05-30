@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    {%if not request.user.is_authenticated %}
+        <h1 style="font-size: 48px;">Memories <span style="font-size: 20px;">- храни свои воспоминания</span></h1>
+        <div class="row g-0">
+            <div class="col-12 pt-5 d-flex flex-column login-cite">
+                <p style="text-align: center;">Ты можешь зайти к нам, имея аккаунт во ВКонтакте</p>
+                <a href="{% url 'social:begin' 'vk-oauth2'%}" class="login">Войти с помощью Вк</a>
+            </div>
+        </div>
+    {%else%}
+        <div class="about-user row g-0">
+            <div class="col-4 profile">
+                {% if photo_url %}
+                    <img src="{{ photo_url }}" class="photo-profile">
+                    <a href="{% url 'logout' %}" class="logout">Выйти</a>
+                {% endif %}
+            </div>
+            <div class="col-8 d-flex about-profile" >
+                <h1 class="mt-5">{{user.first_name}} {{user.last_name}} </h1>
+            </div>
+        </div>
+    {% endif %}
+{%endblock%}
