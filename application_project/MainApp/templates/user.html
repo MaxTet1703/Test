@@ -20,5 +20,19 @@
                 <h1 class="mt-5">{{user.first_name}} {{user.last_name}} </h1>
             </div>
         </div>
+        <div class="row g-0">
+            <span href="" class="hidden-button"onclick="hidden_form()">Создать новое впечатление</span>
+            <form id="place-form">
+                {% csrf_token %}
+                <div class="form-error">{{ form.non_field_errors }}</div>
+                {% for f in form %}
+                    <p>{{f}}</p>
+                {%endfor%}
+                <div id='map' style='width: 300px; height: 300px;'></div>
+                <input type="submit" placeholder="Создать впечатление">
+            </form>
+        </div>
     {% endif %}
+
 {%endblock%}
+

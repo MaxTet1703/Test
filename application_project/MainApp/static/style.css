@@ -35,3 +35,6 @@ h1.welcome{
   display: inline-block;
   align-self: center;
 }
+form.hide{
+  display: none;
+}
