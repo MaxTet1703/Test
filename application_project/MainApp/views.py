@@ -1,13 +1,9 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.contrib.auth.models import User
-from django.http import JsonResponse
 from .models import Places
-from .utils import *
 from .forms import *
 import vk_api
 
@@ -18,14 +14,19 @@ class HomeView(LoginRequiredMixin, TemplateView):
     template_name = "home.html"
 
 
-class UserView(CreateView):
+class UserView(CreateView, ListView):
     template_name = "user.html"
     form_class = AddPost
     model = Places
+    context_object_name = 'places'
     success_url = "/"
+
+    def get_queryset(self):
+        return Places.objects.filter(author = self.request.user)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['mapbox_access_token'] = 'pk.eyJ1IjoibWF4aW0yMjgiLCJhIjoiY2xpZGFqMzdqMDdzZDNkczA1OGhrcm41ciJ9.kTT3VXnvb9Ui1ENZitz0Cw'
         if self.request.user.is_authenticated:
             user_social_auth = self.request.user.social_auth.get(provider='vk-oauth2')
             user_id = user_social_auth.uid
@@ -52,7 +53,7 @@ class UserView(CreateView):
                               comment=comment,
                               latitude=latitude,
                               longitude = longitude)
-        return redirect('home')
+        return HttpResponse()
 
 
 

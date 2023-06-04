@@ -6,7 +6,7 @@ import geocoder
 
 
 class Places(models.Model):
-    author = models.ForeignKey(User, on_delete= models.DO_NOTHING)
+    author = models.ForeignKey(User, on_delete= models.DO_NOTHING, related_name='place')
     place_name = models.CharField(blank=True, null=True, max_length=255, verbose_name='Название места')
     comment = models.TextField(blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)

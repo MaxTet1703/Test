@@ -71,6 +71,17 @@ textarea.comment{
   background: white;
   border-radius: 10px;
 }
+/********************************
+************Воспоминания************/
+p.name{
+  text-align: left;
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+}
+p.place-comment{
+  width: 50%;
+}
 h1.welcome{
     text-align: center;
     padding-top: 10px;

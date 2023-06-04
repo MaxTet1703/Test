@@ -23,19 +23,31 @@
 
                 <h6 class="success-message" style="color:green;"></h6>
 
-                <form id="place-form" class="hide">
+                <form id="place-form" class="hide" style="width: 100%;">
                     {% csrf_token %}
                     <div class="form-error">{{ form.non_field_errors }}</div>
                     {% for f in form %}
                         <p>{{f}}</p>
                     {%endfor%}
                     <p style="margin-bottom: 3px;">Укажите место на карте</p>
-                    <div id='map' style='width: 500px; height: 300px;'></div>
+                    <div id='map' style='width: 600px; height: 300px;'></div>
                     <button class="submit" type="submit">Сохранить</button>
                 </form>
 
             </div>
         </div>
+        <h2 style="padding-left: 80px; margin-top:20px;">Ваши воспоминания</h2>
+
+        {% for place in places %}
+            <div class="row g-0 mt-5 ">
+                <div id="map{{place.id}}" class="col-6 d-flex just" style='width: 500px; height: 300px;'></div>
+                <div class="col-6 d-flex flex-column align-items-center">
+                    <p class="name">{{place.place_name}}</p>
+                    <p class="place-comment">{{place.comment}}</p>
+                </div>
+            </div>
+        {%endfor%}
+
     {% endif %}
 
 {%endblock%}
