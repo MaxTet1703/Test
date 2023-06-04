@@ -10,7 +10,9 @@ import vk_api
 
 # Create your views here.
 
-class HomeView(LoginRequiredMixin, TemplateView):
+class HomeView(LoginRequiredMixin, ListView):
+    model = Places
+    context_object_name = 'places'
     template_name = "home.html"
 
 
@@ -22,7 +24,7 @@ class UserView(CreateView, ListView):
     success_url = "/"
 
     def get_queryset(self):
-        return Places.objects.filter(author = self.request.user)
+        return Places.objects.filter(author = self.request.user.id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -42,7 +44,7 @@ class UserView(CreateView, ListView):
         return super(UserView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
-        author = self.request.user
+        author = self.request.user.id
         place_name = request.POST['place_name']
         comment = request.POST['comment']
         latitude = request.POST['latitude']
