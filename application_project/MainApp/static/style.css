@@ -1,3 +1,5 @@
+/***************************************
+*****************Фото с кнопками войти/выйти*********/
 div.profile{
     display: flex;
     flex-direction: column;
@@ -16,15 +18,9 @@ a.logout{
   background: rgb(74, 118, 168);
   border-radius: 10px;
 }
-h1.welcome{
-    text-align: center;
-    padding-top: 10px;
-}
-
 .login-cite{
   font-size: 24px;
 }
-
 .login-cite a{
   text-decoration: none;
   padding: 7px 10px;
@@ -35,6 +31,47 @@ h1.welcome{
   display: inline-block;
   align-self: center;
 }
+/***************************************
+*****************Стили для формы, чтобы ее можно было показать/скрыть*********/
 form.hide{
   display: none;
+}
+form.hide.not-hide{
+    display:block;
+}
+/***********Стили для формы**********************/
+span.not-hidden{
+  margin-bottom: 20px;
+  cursor: pointer;
+  color: blue;
+  text-decoration: none;
+}
+span.not-hidden:hover{
+  text-decoration: underline;
+}
+input.place_name{
+  padding: 5px;
+  width: 250px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid black;
+}
+textarea.comment{
+  resize: none;
+  width: 350px;
+  height: 200px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.submit{
+  margin-top: 10px;
+  padding: 5px;
+  width: 100px;
+  background: white;
+  border-radius: 10px;
+}
+h1.welcome{
+    text-align: center;
+    padding-top: 10px;
 }

@@ -7,6 +7,6 @@ class AddPost(forms.ModelForm):
         model = Places
         fields = ('place_name', 'comment')
         widgets = {
-            'place_name': forms.TextInput(attrs={'class': 'place_name'}),
-            'comment': forms.Textarea(attrs={'class': 'comment'})
+            'place_name': forms.TextInput(attrs={'class': 'place_name', 'placeholder': 'Название места'}),
+            'comment': forms.Textarea(attrs={'class': 'comment', 'placeholder': 'Расскажи об этом'})
         }
