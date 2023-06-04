@@ -44,7 +44,7 @@ class UserView(CreateView, ListView):
         return super(UserView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
-        author = self.request.user.id
+        author = self.request.user
         place_name = request.POST['place_name']
         comment = request.POST['comment']
         latitude = request.POST['latitude']

@@ -3,6 +3,7 @@
     <h1 class="welcome">Добро пожаловать</h1>
     {% for place in places %}
         <div class="row g-0 mt-5 ">
+            <p>{{user.first_name}} {{user.last_name}}</p>
             <div id="map{{place.id}}" class="col-6 d-flex just" style='width: 500px; height: 300px;'></div>
             <div class="col-6 d-flex flex-column align-items-center">
                 <p class="name">{{place.place_name}}</p>
